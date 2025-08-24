@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reload - Mobile</title>
+    <!-- Carica i font da Google Fonts per un'estetica moderna -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Carica Tailwind CSS dal CDN per una stilizzazione rapida e pulita -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Personalizzazione del tema Tailwind con i colori del logo */
+        :root {
+            --color-neon-purple: #a855f7; /* Tailwind purple-500 */
+            --color-deep-purple: #1e0e33; /* Viola molto scuro per gli sfondi */
+            --color-vibrant-purple: #c084fc; /* Viola più chiaro per gli accenti */
+            --color-neon-yellow: #fde047; /* Tailwind yellow-300 */
+            --bg-dark: #0f172a; /* Tailwind slate-950 */
+        }
+        html, body {
+            height: 100%; /* Correzione: Imposta l'altezza a 100% per un corretto scorrimento */
+            overflow-y: auto; /* Correzione: Abilita lo scorrimento verticale */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            -webkit-user-select: none; /* Disabilita la selezione del testo per un'esperienza più app-like */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        /* Classi personalizzate per l'effetto neon e futuristico */
+        .neon-purple {
+            color: var(--color-neon-purple);
+        }
+        .bg-neon-purple {
+            background-color: var(--color-neon-purple);
+        }
+        .vibrant-purple {
+            color: var(--color-vibrant-purple);
+        }
+        .bg-vibrant-purple {
+            background-color: var(--color-vibrant-purple);
+        }
+        .neon-yellow {
+            color: var(--color-neon-yellow);
+        }
+        .bg-neon-yellow {
+            background-color: var(--color-neon-yellow);
+        }
+        .text-shadow-neon-purple {
+            text-shadow: 0 0 8px var(--color-neon-purple), 0 0 16px var(--color-neon-purple);
+        }
+        .text-shadow-neon-yellow {
+            text-shadow: 0 0 8px var(--color-neon-yellow), 0 0 16px var(--color-neon-yellow);
+        }
+        .box-shadow-neon-purple {
+            box-shadow: 0 0 10px var(--color-neon-purple), 0 0 20px var(--color-neon-purple);
+        }
+        .box-shadow-neon-yellow {
+            box-shadow: 0 0 10px var(--color-neon-yellow), 0 0 20px var(--color-neon-yellow);
+        }
+
+        /* Animazione e Sfondo Futuristico */
+        @keyframes scanline {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 0% 100%; }
+        }
+        .futuristic-background {
+            position: relative;
+            overflow: hidden;
+        }
+        .futuristic-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                rgba(192, 132, 252, 0.05) 1px,
+                transparent 2px
+            );
+            animation: scanline 20s linear infinite;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Stile per i riquadri espandibili */
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .card.active .card-content {
+            max-height: 500px; /* Valore grande per permettere l'espansione */
+            padding-top: 1.5rem; /* Aggiunge padding quando espanso */
+        }
+        .card-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-header .arrow {
+            transition: transform 0.3s ease-in-out;
+        }
+        .card.active .card-header .arrow {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 futuristic-background">
+
+    <!-- Sezione Header/Eroe mobile -->
+    <header class="text-center pt-12 pb-8">
+        <img src="https://i.imgur.com/B80E5UN.png" alt="Logo Reload" class="h-24 w-24 mx-auto rounded-xl border-4 border-vibrant-purple mb-4">
+        <h1 class="text-4xl font-extrabold neon-yellow tracking-widest text-shadow-neon-yellow">RELOAD</h1>
+        <p class="text-xl max-w-sm mx-auto mt-2 text-gray-400">
+            Functional Training & Hyrox
+        </p>
+    </header>
+
+    <main class="container mx-auto px-4 pb-12">
+
+        <!-- Sezione Coach (sempre visibile) -->
+        <section class="mb-8">
+            <h2 class="text-3xl font-bold text-center mb-6 neon-purple text-shadow-neon-purple">I NOSTRI COACH</h2>
+            <div class="bg-purple-950 p-6 rounded-xl border-4 border-neon-yellow box-shadow-neon-yellow text-center">
+                <img src="https://placehold.co/120x120/312e81/e5e7eb?text=BARBARA" alt="Foto Prof.ssa Barbara D'Agostino" class="w-24 h-24 rounded-full mx-auto border-4 border-vibrant-purple mb-4">
+                <h3 class="text-2xl font-semibold mb-1 vibrant-purple text-shadow-neon-purple">Prof.ssa Barbara D'Agostino</h3>
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    Fondatrice e anima di Reload. Con un background in Scienze Motorie, ti guiderà verso il superamento dei tuoi limiti.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sezioni dei corsi come riquadri interattivi -->
+        <section class="space-y-6">
+
+            <!-- Riquadro Allenamento Funzionale -->
+            <div class="card bg-purple-950 rounded-xl border-4 border-neon-purple box-shadow-neon-purple">
+                <div class="card-header p-6" onclick="toggleCard(this)">
+                    <h3 class="text-2xl font-bold neon-purple text-shadow-neon-purple">ALLENAMENTO FUNZIONALE</h3>
+                    <span class="arrow text-3xl neon-yellow">▾</span>
+                </div>
+                <div class="card-content p-6 pt-0">
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Un approccio olistico per sviluppare la forza, la mobilità e la resistenza. Ogni movimento è studiato per migliorare le tue prestazioni nella vita di tutti i giorni.
+                    </p>
+                    <ul class="list-disc list-inside mt-4 text-gray-400">
+                        <li>Sviluppa la forza reale</li>
+                        <li>Migliora la mobilità e l'agilità</li>
+                        <li>Rafforza la connessione mente-corpo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Riquadro Preparazione Hyrox -->
+            <div class="card bg-purple-950 rounded-xl border-4 border-neon-purple box-shadow-neon-purple">
+                <div class="card-header p-6" onclick="toggleCard(this)">
+                    <h3 class="text-2xl font-bold neon-purple text-shadow-neon-purple">PREPARAZIONE HYROX</h3>
+                    <span class="arrow text-3xl neon-yellow">▾</span>
+                </div>
+                <div class="card-content p-6 pt-0">
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        Preparazione completa e mirata per la gara di fitness Hyrox, che combina corsa e stazioni di allenamento funzionale. I nostri coach ti guideranno passo dopo passo.
+                    </p>
+                    <ul class="list-disc list-inside mt-4 text-gray-400">
+                        <li>Allenamenti specifici per la gara</li>
+                        <li>Strategia e tecnica di corsa</li>
+                        <li>Simulazioni di gara in palestra</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Sezione Call-to-Action -->
+        <section id="contact" class="text-center py-12">
+            <h3 class="text-3xl font-bold mb-4 neon-yellow text-shadow-neon-yellow">
+                SEI PRONTO A RICARICARTI?
+            </h3>
+            <p class="text-lg max-w-xs mx-auto mb-8 text-gray-400">
+                Inizia il tuo percorso. Contattaci per una lezione di prova gratuita.
+            </p>
+            <button onclick="document.getElementById('modal').style.display='flex'"
+                    class="w-full bg-neon-purple text-gray-950 font-bold py-4 rounded-full text-lg shadow-lg hover:bg-purple-600 transition-transform transform hover:scale-105">
+                CONTATTACI SUBITO
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Popup di conferma (nascosto di default) -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h4 class="text-3xl font-bold neon-yellow mb-4">Grazie!</h4>
+            <p class="text-xl text-gray-300">Il tuo messaggio è stato inviato con successo. Ti ricontatteremo presto!</p>
+            <button onclick="document.getElementById('modal').style.display='none'"
+                    class="mt-6 bg-vibrant-purple text-gray-950 font-bold py-2 px-6 rounded-full transition-colors hover:bg-purple-400">
+                Chiudi
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        // Funzione per espandere/comprimere i riquadri
+        function toggleCard(header) {
+            const card = header.parentElement;
+            const allCards = document.querySelectorAll('.card');
+
+            // Chiudi tutti gli altri riquadri
+            allCards.forEach(c => {
+                if (c !== card && c.classList.contains('active')) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Espandi/comprimi il riquadro cliccato
+            card.classList.toggle('active');
+        }
+
+        // Stile del popup di conferma
+        const modal = document.getElementById('modal');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
